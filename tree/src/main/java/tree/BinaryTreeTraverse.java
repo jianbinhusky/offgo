@@ -3,16 +3,36 @@ package tree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
+/**
+ * <p>BinaryTree Traverse 6 methods</p>
+ *
+ * preOrder
+ *        |_Recursive
+ *        |_NonRecursive
+ * midOrder
+ *        |_Recursive
+ *        |_NonRecursive
+ * posOrder
+ *        |_Recursive
+ *        |_NonRecursive
+ *
+ * @author hujb
+ */
 public class BinaryTreeTraverse {
     private static Logger logger = LoggerFactory.getLogger(BinaryTreeTraverse.class);
+
+    protected static List<Integer> list = new ArrayList<>();
 
     public static void print(Node node) {
         System.out.print(node.getValue() +  "\t");
     }
 
     public static void visit(Node node) {
+        list.add(node.getValue());
         print(node);
     }
 
@@ -112,5 +132,5 @@ public class BinaryTreeTraverse {
             }
         }
     }
-    
+
 }

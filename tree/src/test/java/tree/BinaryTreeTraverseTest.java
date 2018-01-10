@@ -57,4 +57,35 @@ public class BinaryTreeTraverseTest {
     public void testPosOrderNonRecursiveTraverse() {
         BinaryTreeTraverse.posOrderNonRecursiveTraverse(root);
     }
+
+    @Test
+    public void testConstructBinaryTreeFromPreMid() {
+        int[] pre = BinaryTreeUtils.binaryTree2PreOrderArray(root);
+        System.out.println();
+        int[] mid = BinaryTreeUtils.binaryTree2MidOrderArray(root);
+
+        Node node = BinaryTreeConstruct.constructBinaryTreeFromPreMid(pre, mid);
+
+        System.out.println();
+        BinaryTreeUtils.binaryTree2PreOrderArray(node);
+        System.out.println();
+        BinaryTreeUtils.binaryTree2MidOrderArray(node);
+
+    }
+
+    @Test
+    public void testConstructBinaryTreeFromMidPos() {
+        int[] pos = BinaryTreeUtils.binaryTree2PosOrderArray(root);
+        System.out.println();
+        int[] mid = BinaryTreeUtils.binaryTree2MidOrderArray(root);
+
+        Node node = BinaryTreeConstruct.constructBinaryTreeFromMidPos(mid, pos);
+
+
+        System.out.println();
+        BinaryTreeUtils.binaryTree2PreOrderArray(node);
+        System.out.println();
+        BinaryTreeUtils.binaryTree2MidOrderArray(node);
+
+    }
 }
