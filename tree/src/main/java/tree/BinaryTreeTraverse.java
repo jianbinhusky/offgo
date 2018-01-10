@@ -133,4 +133,54 @@ public class BinaryTreeTraverse {
         }
     }
 
+    /**
+     * <p>1.if has left leaf , next is left leaf么</p>
+     * <p>2.if has no left leaf
+     *      2.1 current is its parent's left leaf , next is parent's right leaf
+     *      2.1 current is its parent's right leaf , must search it's parent
+     *      util which has right leaf and the right leaf is next
+     *</p>
+     * @param current
+     */
+    public static PNode findNextNodeFromPreOrder(PNode current) {
+        if (current == null) {
+            throw new NullPointerException();
+        }
+        PNode next;
+        if (current.getLeft() != null) {
+            next = current.getLeft();
+        } else if (current == current.getParent().getLeft() && current.getRight() == null) {
+            next = current.getParent().getRight();
+        } else {
+            current = current.getParent();
+            while (current.getParent().getRight() == null) {
+                current = current.getParent();
+            }
+            next = current.getParent().getRight();
+        }
+
+
+        return next;
+    }
+
+    public static void findNextNodeFromMidOrder(PNode node, int value) {
+
+    }
+
+    public static void findNextNodeFromPosOrder(PNode node, int value) {
+
+    }
+
+    public static void findPrevNodeFromPreOrder(PNode node, int value) {
+
+    }
+
+    public static void findPrevNodeFromMidOrder(PNode node, int value) {
+
+    }
+
+    public static void findPrevNodeFromPosOrder(PNode node, int value) {
+
+    }
+
 }

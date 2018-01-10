@@ -7,9 +7,12 @@ public class BinaryTreeTraverseTest {
 
     private static Node root;
 
+    private static PNode rand;
+
     @Before
     public void initTree() {
         root = NodeManager.getInstance().getRoot();
+//        rand = NodeManager.getInstance().getRandomPNode();
     }
 
     @Test
@@ -87,5 +90,21 @@ public class BinaryTreeTraverseTest {
         System.out.println();
         BinaryTreeUtils.binaryTree2MidOrderArray(node);
 
+    }
+
+    @Test
+    public void testFindNextNodeFromPreOrder() {
+//        System.out.println("Current node is : " +rand.getValue());
+//        PNode node = BinaryTreeTraverse.findNextNodeFromPreOrder(rand);
+        for (int i = 0; i < 8; i++) {
+            System.out.println("Current node is : " +NodeManager.getInstance().getRandomPNode(i).getValue());
+            PNode node = BinaryTreeTraverse.findNextNodeFromPreOrder(NodeManager.getInstance().getRandomPNode(i));
+            if (node != null) {
+                System.out.println("Pre Order next node is : " + node.getValue());
+            } else {
+                System.out.println("next is null");
+            }
+            System.out.println();
+        }
     }
 }
