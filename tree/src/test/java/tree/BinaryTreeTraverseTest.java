@@ -107,4 +107,34 @@ public class BinaryTreeTraverseTest {
             System.out.println();
         }
     }
+
+    @Test
+    public void testFindNextNodeFromPosOrder() {
+//        System.out.println("Current node is : " +rand.getValue());
+//        PNode node = BinaryTreeTraverse.findNextNodeFromPreOrder(rand);
+        for (int i = 0; i < 8; i++) {
+            System.out.println("Current node is : " +NodeManager.getInstance().getRandomPNode(i).getValue());
+            PNode node = BinaryTreeTraverse.findNextNodeFromPosOrder(NodeManager.getInstance().getRandomPNode(i));
+            if (node != null) {
+                System.out.println("Pos Order next node is : " + node.getValue());
+            } else {
+                System.out.println("next is null");
+            }
+            System.out.println();
+        }
+    }
+
+    @Test
+    public void testFindNextNodeFromMidOrder() {
+        for (int i = 0; i < 8; i++) {
+            System.out.println("Current node is : " +NodeManager.getInstance().getRandomPNode(i).getValue());
+            PNode node = BinaryTreeTraverse.findNextNodeFromMidOrder(NodeManager.getInstance().getRandomPNode(i));
+            if (node != null) {
+                System.out.println("Pos Order next node is : " + node.getValue());
+            } else {
+                System.out.println("next is null");
+            }
+            System.out.println();
+        }
+    }
 }

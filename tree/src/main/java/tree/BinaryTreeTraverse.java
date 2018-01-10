@@ -149,29 +149,66 @@ public class BinaryTreeTraverse {
         PNode next;
         if (current.getLeft() != null) {
             next = current.getLeft();
-        } else if (current == current.getParent().getLeft() && current.getRight() == null) {
-            next = current.getParent().getRight();
+        } else if (current.getRight() != null) {
+            next = current.getRight();
         } else {
+            PNode temp = current;
             current = current.getParent();
             while (current.getParent().getRight() == null) {
                 current = current.getParent();
             }
-            next = current.getParent().getRight();
+            next = temp.getParent() != current.getParent().getRight() ? current.getParent().getRight() : null;
         }
-
 
         return next;
     }
 
-    public static void findNextNodeFromMidOrder(PNode node, int value) {
+    public static PNode findNextNodeFromMidOrder(PNode current) {
+        if (current == null) {
+            throw new NullPointerException();
+        }
+        PNode next;
+        if (current.getRight() != null) {
+            current = current.getRight();
+            while (current.getLeft() != null) {
+                current = current.getLeft();
+            }
+            next = current;
+        } else {
+            PNode parent = current.getParent();
+            while (parent != null && current == parent.getRight()) {
+                current = parent;
+                parent = parent.getParent();
+            }
+            next = parent;
+        }
 
+        return next;
     }
 
-    public static void findNextNodeFromPosOrder(PNode node, int value) {
+    public static PNode findNextNodeFromPosOrder(PNode current) {
+        if (current == null) {
+            throw new NullPointerException();
+        }
+        PNode next;
+        if(current.getParent() == null) {
+            next = null;
+        }else if (current.getParent().getRight() == null) {
+            next = current.getParent();
+        } else if(current.getParent().getRight() == current) {
+            next = current.getParent();
+        } else {
+            current = current.getParent().getRight();
+            while (current.getLeft() != null) {
+                current = current.getLeft();
+            }
+            next = current;
+        }
 
+        return next;
     }
 
-    public static void findPrevNodeFromPreOrder(PNode node, int value) {
+    public static void findPrevNodeFromPreOrder(PNode current) {
 
     }
 
