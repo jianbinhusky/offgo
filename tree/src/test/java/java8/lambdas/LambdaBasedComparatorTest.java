@@ -27,7 +27,8 @@ public class LambdaBasedComparatorTest {
     @Test
     public void lambdaBasedComparator() throws Exception {
         // comparator is defined on the fly
-        Comparator<Person> byLastNameAsc = (p1, p2) -> p1.getLastName().compareTo(p2.getLastName());
+//        Comparator<Person> byLastNameAsc = (p1, p2) -> p1.getLastName().compareTo(p2.getLastName());
+        Comparator<Person> byLastNameAsc = Comparator.comparing(Person::getLastName);
 
         Collections.sort(persons, byLastNameAsc);
 
