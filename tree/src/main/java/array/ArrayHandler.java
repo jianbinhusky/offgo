@@ -82,29 +82,34 @@ public class ArrayHandler {
 
 
     /**
-     * <p></p>
+     * <h1>二、不修改数组找出重复数字</h1>
+     * <p>在一个长度为n+1的数组里所有数字都在1~n的范围内，所以数组至少有一个数字是重复的</p>
+     * <p>找出重复数字但不能修改数组，{2，3，5，4，3，2，6，7}</p>
+     * <p>思路：1.借助一个等长的数组作为哈希表，跟上述一个算法类似</p>
+     * <p>2.二分查找+统计数字</p>
+     * <p>把1~n的数字分为两半，1~m和m+1~n,如果1~m的数字超过m，那么重复数字一定在1~m之间，否则在m+1~n之间</p>
      * @param nums
      * @return
      */
     public static int findDuplicateNumberFromArray2(int[] nums) {
-        int start = 1;
-        int end = nums.length - 1;
+        int start = 1;                                  //下标开始值为1
+        int end = nums.length - 1;                      //结束值为length -1
 
-        while (end >= start) {
-            int mid = (end - start) / 2 + start;
-            int count = countRange(nums, start, mid);
-            if (end == start) {
-                if (count > 1) {
+        while (end >= start) {                          //只要下标开始值还小于等于结束值
+            int mid = (end - start) >> 1 + start;       //防止溢出，结束-开始 / 2 + 开始，即到中间长度+开始=mid
+            int count = countRange(nums, start, mid);   //遍历整个数组，统计 start~mid这区间内有多少个数字
+            if (end == start) {                         //如果开始下标跟结束下标相等，即就同一个数字
+                if (count > 1) {                        //并且统计个数大于1那么该数字是重复的
                     return start;
                 } else {
                     break;
                 }
             }
 
-            if (count > (mid - start + 1)) {
-                end = mid;
+            if (count > (mid - start + 1)) {            //如果统计个数超过 mid - start +1 （超过范围长度）个
+                end = mid;                              //那么仅把下一次统计的结束位置设置成mid
             } else {
-                start = mid + 1;
+                start = mid + 1;                        //否则仅把下一次统计的开始位置设置成mid+1
             }
         }
         return -1;
