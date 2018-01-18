@@ -91,28 +91,28 @@ public class ThreeThread75NumbersTester {
             this.condition = lock.newCondition();
         }
 
-        private Condition condition;
+        private static Condition condition;
 
         @Override
         public void run() {
-            boolean flag = lock.tryLock();
+            lock.lock();
             while (limit <= end) {
-                if (limit / 5 % 3 == id && flag) {
+                if (limit / 5 % 3 == id) {
                     System.out.print(id + " : ");
                     for (int i = 0; i < 5; i++) {
                         System.out.print(limit++ + ",");
                     }
                     System.out.println();
-                    lock.unlock();
+                    condition.signalAll();
                 } else {
                     try {
-
+                        condition.await();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    continue;
                 }
             }
+            lock.unlock();
         }
     }
 
