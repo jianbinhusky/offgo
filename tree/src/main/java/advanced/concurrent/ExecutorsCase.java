@@ -9,10 +9,11 @@ public class ExecutorsCase {
         RejectedExecutionHandler[] handler = {new ThreadPoolExecutor.AbortPolicy(),
                 new ThreadPoolExecutor.CallerRunsPolicy(),
                 new ThreadPoolExecutor.DiscardOldestPolicy(), new ThreadPoolExecutor.DiscardPolicy()};
-        ThreadPoolExecutor tpe = new ThreadPoolExecutor(1, 2, 0L,
-                TimeUnit.MILLISECONDS, new LinkedBlockingQueue(1), Executors.defaultThreadFactory(), handler[0]);
+//        ThreadPoolExecutor tpe = new ThreadPoolExecutor(1, 2, 0L,
+//                TimeUnit.MILLISECONDS, new LinkedBlockingQueue(1), Executors.defaultThreadFactory(), handler[0]);
         String[] names = {"Concurrent","NIO","Pattern","Base"};
 //        ExecutorService tpe = Executors.newCachedThreadPool();
+        ExecutorService tpe = Executors.newScheduledThreadPool(1);
         for (int i = 0; i < 10; i++) {
 //            tpe.execute(() -> {
 //                try {
