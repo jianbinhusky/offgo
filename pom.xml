@@ -13,6 +13,7 @@
         <module>productapi</module>
         <module>productservice</module>
         <module>orderservice</module>
+        <module>think</module>
     </modules>
 
 
