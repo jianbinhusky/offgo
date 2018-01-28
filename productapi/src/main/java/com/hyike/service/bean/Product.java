@@ -10,6 +10,6 @@ import java.io.Serializable;
 @Data
 public class Product implements Serializable {
     private long id;
-    private String name;
+    transient private String name;
     private double price;
 }

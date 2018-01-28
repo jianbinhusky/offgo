@@ -34,7 +34,9 @@ public class BioApplication {
                     clazz = ProductService.class;
                 }
 
+                //反射，通过Service Class 对象 根据方法名和参数数组匹配 要调用的方法
                 Method method = clazz.getMethod(methodName, paramType);
+                //通过方法反射调用本地Service的具体方法实现
                 Object invoke = method.invoke(clazz.newInstance(), args4Method);
 
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());

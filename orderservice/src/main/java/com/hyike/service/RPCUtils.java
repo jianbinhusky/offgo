@@ -23,9 +23,9 @@ public class RPCUtils {
             Class[] paramType = method.getParameterTypes();
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeUTF(apiClassName);
-            objectOutputStream.writeUTF(methodName);
-            objectOutputStream.writeObject(paramType);
+            objectOutputStream.writeUTF(apiClassName);//Service 的全限定名
+            objectOutputStream.writeUTF(methodName);  //调用的方法名
+            objectOutputStream.writeObject(paramType);//方法的参数类型
             objectOutputStream.writeObject(args);
             objectOutputStream.flush();
 
