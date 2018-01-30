@@ -33,6 +33,23 @@ public class PracticeLinkedList {
         }
     }
 
+    public static Node merge(Node h1, Node h2) {
+        if (h1 == null) {
+            return h2;
+        } else if (h2 == null) {
+            return h1;
+        }
+        Node node = null;
+        if (h1.data < h2.data) {
+            node = h1;
+            node.next = merge(h1.next, h2);
+        } else {
+            node = h2;
+            node.next = merge(h1, h2.next);
+        }
+        return node;
+    }
+
     public static Node reverse(Node head) {
         Node last = null;
         Node node = head;
